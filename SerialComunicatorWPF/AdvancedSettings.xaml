@@ -68,7 +68,7 @@
                 <Label Content="Baudrate" HorizontalAlignment="Left" VerticalAlignment="Center" Width="88" Height="26"/>
                 <ComboBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22"/>
                 <ComboBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22" Grid.Row="3"/>
-                <CheckBox Content="Save Port" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Checked="CheckBox_Checked" Margin="4,0,0,0"/>
+                <CheckBox Content="Save Port" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Margin="4,0,0,0"/>
             </Grid>
         </GroupBox>
         <Button Content="Apply" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="74" Height="20"/>

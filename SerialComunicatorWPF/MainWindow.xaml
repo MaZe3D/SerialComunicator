@@ -23,7 +23,7 @@
             </TabItem>
             <TabItem Header="Graph">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,1">
-                    <Canvas x:Name="graphCanvas" />
+                    <WpfPlot Name="WpfPlot1" />
                 </Grid>
             </TabItem>
         </TabControl>

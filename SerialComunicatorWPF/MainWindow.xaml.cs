@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScottPlot;
 
 namespace SerialComunicatorWPF
 {
@@ -63,17 +65,34 @@ namespace SerialComunicatorWPF
 
         }
 
+
+        Timer aTimer;
+        double[] values;
+        int idx = 0;
         private void draw()
         {
-            var geometry1 = new GeometryGroup();
-            geometry1.Children.Add(new LineGeometry(new Point(0, 20), new Point(100, 20)));
-            
-            Path xaxis_path = new Path();
-            xaxis_path.StrokeThickness = 1;
-            xaxis_path.Stroke = Brushes.Black;
-            xaxis_path.Data = geometry1;
+            //ALternativen: Oxyplot, LiveCharts
 
-            graphCanvas.Children.Add(xaxis_path);
+            //https://github.com/ScottPlot/ScottPlot/issues/37
+            WpfPlot1.Plot.Title("Serielle Datan An COMX");
+
+            values = new double[1000];
+            WpfPlot1.Plot.AddSignal(values, sampleRate: 10);
+            WpfPlot1.Plot.SetAxisLimitsX(-1,100);
+            WpfPlot1.Plot.SetAxisLimitsY(-1,11);
+            aTimer = new System.Timers.Timer(100);
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+
+
         }
+
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            values[idx++ % 1000] = (double)(idx % 100) / 10;
+        }
+
     }
 }
