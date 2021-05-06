@@ -22,7 +22,9 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Graph">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,1"/>
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,1">
+                    <Canvas x:Name="graphCanvas" />
+                </Grid>
             </TabItem>
         </TabControl>
         <TextBox x:Name="tb_SerialWrite" Margin="10,406,128,10" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" IsEnabled="False" KeyDown="tb_SerialWrite_KeyDown"/>

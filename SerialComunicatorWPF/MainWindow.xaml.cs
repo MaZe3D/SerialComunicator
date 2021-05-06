@@ -24,6 +24,9 @@ namespace SerialComunicatorWPF
         public MainWindow()
         {
             InitializeComponent();
+
+            draw();
+
             Steuerung.mainWindow = this;
             Steuerung.main();
         }
@@ -53,6 +56,24 @@ namespace SerialComunicatorWPF
                 default:
                     break;
             }
+        }
+
+        private void tb_SerialRead_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void draw()
+        {
+            var geometry1 = new GeometryGroup();
+            geometry1.Children.Add(new LineGeometry(new Point(0, 20), new Point(100, 20)));
+            
+            Path xaxis_path = new Path();
+            xaxis_path.StrokeThickness = 1;
+            xaxis_path.Stroke = Brushes.Black;
+            xaxis_path.Data = geometry1;
+
+            graphCanvas.Children.Add(xaxis_path);
         }
     }
 }
