@@ -14,6 +14,7 @@ namespace SerialComunicatorWPF
     static class Steuerung
     {
         public static MainWindow mainWindow;
+        public static AdvancedSettings advancedSettings;
 
         static List<string> avaiiblePorts = new List<string>();
 
@@ -49,10 +50,11 @@ namespace SerialComunicatorWPF
         {
             mainWindow.combBox_Port.Items.Clear();
             getAvaliblePorts();
-            avaiiblePorts.ForEach(port => mainWindow.combBox_Port.Items.Add(port));
+            avaiiblePorts.ForEach(port =>
+            {
+                mainWindow.combBox_Port.Items.Add(port);
+            });
         }
-
-       
 
         public static void settings_applied()
         {
@@ -110,6 +112,24 @@ namespace SerialComunicatorWPF
             sp.WriteLine(mainWindow.tb_SerialWrite.Text);
             mainWindow.tb_SerialWrite.Text = string.Empty;
             mainWindow.tb_SerialWrite.Focus();
+        }
+
+        public static void applyAdvancedSettings()
+        {
+            sp.StopBits = (StopBits)advancedSettings.combBox_StopBits.SelectedIndex;
+            sp.DataBits = Convert.ToInt32(advancedSettings.tb_DataBits.Text);
+            sp.Parity = (Parity)advancedSettings.combBox_Parity.SelectedIndex;
+            sp.Handshake = (Handshake)advancedSettings.combBox_Handshake.SelectedIndex;
+        }
+
+        public static void openAdvencedSettings()
+        {
+            advancedSettings.combBox_Port.Text = mainWindow.combBox_Port.Text;
+            advancedSettings.combBox_BaudRate.SelectedIndex = mainWindow.combBox_Port.SelectedIndex;
+            advancedSettings.combBox_StopBits.SelectedIndex = (int)sp.StopBits;
+            advancedSettings.tb_DataBits.Text = sp.DataBits.ToString();
+            advancedSettings.combBox_Parity.SelectedIndex = (int)sp.Parity;
+            advancedSettings.combBox_Handshake.SelectedIndex = (int)sp.Handshake;
         }
     }
 }
