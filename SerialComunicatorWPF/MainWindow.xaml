@@ -34,7 +34,7 @@
         <Label x:Name="lbl_Baudrate" Content="Baudrate" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Height="26"/>
         <Button x:Name="btn_Apply" Content="Apply" Margin="0,13,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.042,-0.983" HorizontalAlignment="Right" Width="113" Click="btn_Apply_Click"/>
         <Button x:Name="bt_Send" Content="Send" Margin="0,0,10,9" VerticalAlignment="Bottom" RenderTransformOrigin="0.042,-0.983" HorizontalAlignment="Right" Width="113" Click="bt_Send_Click" IsEnabled="False"/>
-        <Button Content="Advanced Settings" HorizontalAlignment="Left" Margin="362,13,0,0" VerticalAlignment="Top" Width="118" IsEnabled="False"/>
+        <Button Content="Advanced Settings" HorizontalAlignment="Left" Margin="362,13,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click"/>
 
     </Grid>
 </Window>

@@ -54,5 +54,11 @@ namespace SerialComunicatorWPF
                     break;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedSettings advancedSettings = new AdvancedSettings();
+            advancedSettings.Show();
+        }
     }
 }
