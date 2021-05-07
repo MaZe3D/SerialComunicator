@@ -21,11 +21,23 @@ namespace SerialComunicatorWPF
         static SerialPort sp = new SerialPort();
 
         public delegate void delUpdateUItb_SerialRead(string text);
+
+        public readonly static List<int> baudRateList = new List<int>
+        {
+            2400,
+            4800,
+            9600,
+            19200,
+            57600,
+            115200,
+            250000
+        };
         
         static public void main()
         {
             refreshAvailiblePortList();
-            mainWindow.combBox_Baudrate.SelectedIndex = 0;
+            mainWindow.combBox_BaudRate.SelectedIndex = 2;
+            baudRateList.ForEach(rate => mainWindow.combBox_BaudRate.Items.Add(rate));
             switch (avaiiblePorts.Count)
             {
                 case 0:
@@ -56,13 +68,22 @@ namespace SerialComunicatorWPF
             });
         }
 
-        public static void settings_applied()
+        public static void connect()
         {
             if (!sp.IsOpen)
             {
                 sp.PortName = mainWindow.combBox_Port.Text;
-                sp.BaudRate = Convert.ToInt32(mainWindow.combBox_Baudrate.Text);
-                if (mainWindow.combBox_Port.Text == null || Convert.ToInt32(mainWindow.combBox_Baudrate.Text) == 0)
+                try
+                {
+                    sp.BaudRate = Convert.ToInt32(mainWindow.combBox_BaudRate.Text);
+                }
+                catch (System.FormatException e)
+                {
+                    MessageBox.Show($"{e.Message}", $"Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    mainWindow.combBox_BaudRate.SelectedIndex = 0;
+                    return;
+                }
+                if (mainWindow.combBox_Port.Text == null || Convert.ToInt32(mainWindow.combBox_BaudRate.Text) == 0)
                 {
                     MessageBox.Show("Please select Port and Baudrate!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -87,8 +108,9 @@ namespace SerialComunicatorWPF
         private static void enableSettings(bool state)
         {
             mainWindow.combBox_Port.IsEnabled = state;
-            mainWindow.combBox_Baudrate.IsEnabled = state;
-            mainWindow.bt_Send.IsEnabled = !state;
+            mainWindow.combBox_BaudRate.IsEnabled = state;
+            mainWindow.btn_AdvSettings.IsEnabled = state;
+            mainWindow.btn_Send.IsEnabled = !state;
             mainWindow.tb_SerialWrite.IsEnabled = !state;
 
         }
@@ -116,16 +138,30 @@ namespace SerialComunicatorWPF
 
         public static void applyAdvancedSettings()
         {
-            sp.StopBits = (StopBits)advancedSettings.combBox_StopBits.SelectedIndex;
+            try
+            {
+                sp.StopBits = (StopBits)advancedSettings.combBox_StopBits.SelectedIndex;
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                MessageBox.Show($"StopBits: \"None\" is not a valid option! use XOnXOff instead!", $"Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+                advancedSettings.combBox_StopBits.SelectedIndex = (int)sp.StopBits;
+            }
             sp.DataBits = Convert.ToInt32(advancedSettings.tb_DataBits.Text);
             sp.Parity = (Parity)advancedSettings.combBox_Parity.SelectedIndex;
             sp.Handshake = (Handshake)advancedSettings.combBox_Handshake.SelectedIndex;
+            if ((bool)advancedSettings.chkBox_SavePort.IsChecked)
+            {
+                mainWindow.combBox_Port.Text = advancedSettings.tb_Port.Text;
+                sp.PortName = advancedSettings.tb_Port.Text;
+            }
+            mainWindow.combBox_BaudRate.Text = advancedSettings.combBox_BaudRate.Text;
         }
 
         public static void openAdvencedSettings()
         {
-            advancedSettings.combBox_Port.Text = mainWindow.combBox_Port.Text;
-            advancedSettings.combBox_BaudRate.SelectedIndex = mainWindow.combBox_Port.SelectedIndex;
+            advancedSettings.tb_Port.Text = mainWindow.combBox_Port.Text;
+            advancedSettings.combBox_BaudRate.Text = mainWindow.combBox_BaudRate.Text;
             advancedSettings.combBox_StopBits.SelectedIndex = (int)sp.StopBits;
             advancedSettings.tb_DataBits.Text = sp.DataBits.ToString();
             advancedSettings.combBox_Parity.SelectedIndex = (int)sp.Parity;

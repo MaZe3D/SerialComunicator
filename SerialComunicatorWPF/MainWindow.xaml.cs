@@ -35,10 +35,10 @@ namespace SerialComunicatorWPF
 
         private void btn_Apply_Click(object sender, RoutedEventArgs e)
         {
-            Steuerung.settings_applied();
+            Steuerung.connect();
         }
 
-        private void bt_Send_Click(object sender, RoutedEventArgs e)
+        private void btn_Send_Click(object sender, RoutedEventArgs e)
         {
             Steuerung.sendData();
         }
@@ -55,7 +55,7 @@ namespace SerialComunicatorWPF
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btn_AdvSettings_Click(object sender, RoutedEventArgs e)
         {
             AdvancedSettings advancedSettings = new AdvancedSettings();
             advancedSettings.ShowDialog();
