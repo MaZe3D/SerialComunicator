@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SerialComunicatorWPF"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MaZe Serial Comunnicator" Height="570" Width="800" WindowStyle="SingleBorderWindow">
     <Window.Effect>
@@ -22,7 +23,9 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Graph">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,1"/>
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,1">
+                    <lvc:CartesianChart x:Name="myChart" />
+                </Grid>
             </TabItem>
         </TabControl>
         <TextBox x:Name="tb_SerialWrite" Margin="10,406,128,10" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" IsEnabled="False" KeyDown="tb_SerialWrite_KeyDown"/>

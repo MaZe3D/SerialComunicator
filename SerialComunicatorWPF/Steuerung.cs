@@ -42,7 +42,7 @@ namespace SerialComunicatorWPF
             {
                 case 0:
                     
-                    MessageBox.Show("There is no Serial Port availible! Please connect a propper device and try again!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    //MessageBox.Show("There is no Serial Port availible! Please connect a propper device and try again!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     break;
                 case 1:
                     mainWindow.combBox_Port.SelectedIndex = 0;
