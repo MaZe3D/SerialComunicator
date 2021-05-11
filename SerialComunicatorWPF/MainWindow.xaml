@@ -10,13 +10,16 @@
         <DropShadowEffect/>
     </Window.Effect>
     <Grid>
-        <TabControl x:Name="tabControl_Tabs" Margin="10,41,10,33">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="518*"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="tabControl_Tabs" Margin="10,8,10,33" Grid.RowSpan="2" Grid.Row="1">
             <TabItem Header="Console">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="16*"/>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="741*"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="tb_SerialRead" TextWrapping="Wrap" Grid.ColumnSpan="3" Margin="10,10,10,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
                 </Grid>
@@ -25,15 +28,13 @@
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,1"/>
             </TabItem>
         </TabControl>
-        <TextBox x:Name="tb_SerialWrite" Margin="10,406,128,10" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" IsEnabled="False" KeyDown="tb_SerialWrite_KeyDown"/>
-        <ComboBox x:Name="combBox_Port" HorizontalAlignment="Left" Margin="47,12,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="combBox_Port_DropDownOpened" />
-        <Label x:Name="lbl_Port" Content="Port" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26"/>
-        <ComboBox x:Name="combBox_BaudRate" HorizontalAlignment="Left" Margin="232,12,0,0" VerticalAlignment="Top" Width="120" IsEditable="True">
-        </ComboBox>
-        <Label x:Name="lbl_Baudrate" Content="Baudrate" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Height="26"/>
-        <Button x:Name="btn_Apply" Content="Apply" Margin="0,13,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.042,-0.983" HorizontalAlignment="Right" Width="113" Click="btn_Apply_Click"/>
-        <Button x:Name="btn_Send" Content="Send" Margin="0,0,10,9" VerticalAlignment="Bottom" RenderTransformOrigin="0.042,-0.983" HorizontalAlignment="Right" Width="113" Click="btn_Send_Click" IsEnabled="False"/>
-        <Button x:Name="btn_AdvSettings" Content="Advanced Settings" HorizontalAlignment="Left" Margin="362,13,0,0" VerticalAlignment="Top" Width="118" Click="btn_AdvSettings_Click"/>
-
+        <TextBox x:Name="tb_SerialWrite" Margin="10,0,128,10" TextWrapping="Wrap" VerticalAlignment="Bottom" IsEnabled="False" KeyDown="tb_SerialWrite_KeyDown" Height="18" Grid.Row="2"/>
+        <ComboBox x:Name="combBox_Port" HorizontalAlignment="Left" Margin="47,2,0,2" Width="120" DropDownOpened="combBox_Port_DropDownOpened" />
+        <Label x:Name="lbl_Port" Content="Port" HorizontalAlignment="Left" Margin="10,0,0,0" Width="32"/>
+        <ComboBox x:Name="combBox_BaudRate" HorizontalAlignment="Left" Margin="232,2,0,2" Width="120" IsEditable="True"/>
+        <Label x:Name="lbl_Baudrate" Content="Baudrate" HorizontalAlignment="Left" Margin="172,0,0,0" Width="57"/>
+        <Button x:Name="btn_Apply" Content="Apply" Margin="0,0,10,0" VerticalAlignment="Center" RenderTransformOrigin="0.042,-0.983" Click="btn_Apply_Click" Height="20" HorizontalAlignment="Right" Width="113"/>
+        <Button x:Name="btn_Send" Content="Send" Margin="0,0,10,9" VerticalAlignment="Bottom" RenderTransformOrigin="0.042,-0.983" HorizontalAlignment="Right" Width="113" Click="btn_Send_Click" IsEnabled="False" Height="20" Grid.Row="2"/>
+        <Button x:Name="btn_AdvSettings" Content="Advanced Settings" HorizontalAlignment="Left" Margin="362,0,0,0" VerticalAlignment="Center" Width="118" Click="btn_AdvSettings_Click" Height="20"/>
     </Grid>
 </Window>

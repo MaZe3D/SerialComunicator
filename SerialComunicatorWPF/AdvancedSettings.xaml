@@ -47,7 +47,7 @@
                 <Label x:Name="lbl_Parity" Content="Parity" HorizontalAlignment="Left" VerticalAlignment="Center" Width="88" Height="26" Grid.Row="4"/>
                 <Label x:Name="lbl_Handshake" Content="Handshake" HorizontalAlignment="Left" VerticalAlignment="Center" Width="88" Height="26" Grid.Row="5"/>
                 <ComboBox x:Name="combBox_StopBits" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22"/>
-                <TextBox x:Name="tb_DataBits" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22" Grid.Row="3"/>
+                <TextBox x:Name="tb_DataBits" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22" Grid.Row="3" TextAlignment="Right"/>
                 <ComboBox x:Name="combBox_Parity" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22" Grid.Row="4"/>
                 <ComboBox x:Name="combBox_Handshake" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="124" Height="22" Grid.Row="5"/>
             </Grid>
